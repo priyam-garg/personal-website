@@ -33,7 +33,7 @@ export const socials: SocialLink[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/priyam-garg",
+    href: "https://www.linkedin.com/in/priyam-garg-4a2899283",
     handle: "priyam-garg",
     icon: "linkedin",
   },
