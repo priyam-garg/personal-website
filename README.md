@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Priyam Garg — Portfolio
 
-## Getting Started
+Personal portfolio site. Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · Motion.
 
-First, run the development server:
+Dark terminal aesthetic with a light-mode toggle, scroll-reveal animation, and live
+stats pulled from GitHub, LeetCode and Codeforces at build/revalidate time.
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Everything on the page comes from **`src/lib/content.ts`** — profile, socials,
+internships, projects, skills, DSA, education, achievements, nav. Change it there and
+nothing else needs touching.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Swap the résumé by replacing `public/priyam-garg-resume.pdf` (keep the filename, or
+update `profile.resumePath`).
 
-## Learn More
+## Live stats
 
-To learn more about Next.js, take a look at the following resources:
+`src/lib/stats.ts` fetches from three public APIs on the server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Source | Endpoint | Powers |
+| --- | --- | --- |
+| GitHub | `api.github.com/users/priyam-garg` + `/repos` | repo count, stars, language chart |
+| LeetCode | `leetcode.com/graphql` | rating, contests, solved-by-difficulty |
+| Codeforces | `codeforces.com/api/user.info` | current + max rating, rank |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Each fetcher falls back to a verified static snapshot if the API is down or
+rate-limited, and the UI marks it `live` vs `cached` with a small dot. The page is
+statically rendered and revalidates every 6 hours.
 
-## Deploy on Vercel
+## Deploying to Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this folder to a GitHub repo.
+2. On [vercel.com/new](https://vercel.com/new), import it. Framework auto-detects as
+   Next.js — no build settings to change.
+3. Deploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Environment variables (both optional)
+
+| Variable | Why |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Your real domain, e.g. `https://priyamgarg.vercel.app`. Used for canonical URL, Open Graph, sitemap and JSON-LD. Set once the domain is known. |
+| `GITHUB_TOKEN` | A fine-grained PAT with **no scopes** (public data only). Raises the GitHub API rate limit — useful if builds start showing `cached` on the language chart. |
+
+The site builds and runs correctly with neither set.
+
+## SEO
+
+- `metadata` in `src/app/layout.tsx` — title, description, Open Graph, Twitter card
+- `src/app/opengraph-image.tsx` — generated 1200×630 social preview
+- `src/app/robots.ts`, `src/app/sitemap.ts`
+- JSON-LD `Person` schema in `src/app/page.tsx`
