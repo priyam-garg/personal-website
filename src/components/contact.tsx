@@ -46,7 +46,7 @@ export function Contact() {
                 </a>
                 <a
                   href={profile.resumePath}
-                  download
+                  download="Priyam_Garg_Resume.pdf"
                   className="inline-flex items-center gap-2 rounded-md border border-line bg-elev2 px-5 py-3 font-mono text-sm text-fg transition-colors hover:border-accent/40 hover:text-accent"
                 >
                   <Download className="size-4" strokeWidth={1.75} />

@@ -89,7 +89,7 @@ export function Hero({
               </a>
               <a
                 href={profile.resumePath}
-                download
+                download="Priyam_Garg_Resume.pdf"
                 className="inline-flex items-center justify-center gap-2 rounded-md border border-line bg-elev px-4 py-2.5 font-mono text-sm text-muted transition-colors hover:border-line-strong hover:text-fg"
               >
                 <Download className="size-4" strokeWidth={1.75} />

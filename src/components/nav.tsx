@@ -86,7 +86,7 @@ export function Nav() {
         <div className="flex items-center gap-2">
           <a
             href={profile.resumePath}
-            download
+            download="Priyam_Garg_Resume.pdf"
             className="hidden items-center gap-2 rounded-md border border-line bg-elev px-3 py-2 font-mono text-[13px] text-muted transition-colors hover:border-line-strong hover:text-fg sm:inline-flex"
           >
             <Download className="size-3.5" strokeWidth={1.75} />
@@ -126,7 +126,7 @@ export function Nav() {
             <li>
               <a
                 href={profile.resumePath}
-                download
+                download="Priyam_Garg_Resume.pdf"
                 onClick={() => setOpen(false)}
                 className="mt-3 flex items-center justify-center gap-2 rounded-md border border-accent/35 bg-accent-soft py-2.5 font-mono text-sm text-accent"
               >
