@@ -1,4 +1,4 @@
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight, ChevronRight, ExternalLink } from "lucide-react";
 import { projects, type Project } from "@/lib/content";
 import { GitHubIcon } from "./icons";
 import { Reveal } from "./reveal";
@@ -55,35 +55,36 @@ export function Projects() {
 
 function FeaturedCard({ project }: { project: Project }) {
   return (
-    <Card interactive className="group overflow-hidden">
-      <div className="grid gap-0 lg:grid-cols-[1fr_320px]">
-        <div className="p-6 sm:p-8">
-          <div className="flex flex-wrap items-center gap-3">
-            <h3 className="text-2xl font-semibold tracking-tight text-fg">
-              {project.name}
-            </h3>
-            <Chip tone="accent">{project.domain}</Chip>
-            <span className="font-mono text-xs text-dim">{project.year}</span>
+    <Card interactive className="overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent"
+        aria-hidden
+      />
+      <div className="p-6 sm:p-8">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <div className="flex flex-wrap items-center gap-3">
+              <h3 className="text-2xl font-semibold tracking-tight text-fg">
+                {project.name}
+              </h3>
+              <Chip tone="accent">{project.domain}</Chip>
+              <span className="font-mono text-xs text-dim">{project.year}</span>
+            </div>
+            <p className="mt-1.5 font-mono text-sm text-accent">{project.tagline}</p>
           </div>
 
-          <p className="mt-1.5 font-mono text-sm text-accent">{project.tagline}</p>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted">
-            {project.description}
-          </p>
-
-          <ul className="mt-6 space-y-2.5">
-            {project.highlights.map((h) => (
-              <li key={h} className="flex gap-3 text-sm leading-relaxed text-muted">
-                <span
-                  className="mt-2 size-1 shrink-0 rounded-full bg-accent"
-                  aria-hidden
-                />
-                <span>{h}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-7 flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2">
+            {project.demo ? (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="inline-flex items-center gap-2 rounded-md bg-accent px-3.5 py-2 font-mono text-[13px] font-medium text-accent-fg transition-opacity hover:opacity-90"
+              >
+                <ExternalLink className="size-3.5" strokeWidth={2} />
+                Live demo
+              </a>
+            ) : null}
             <a
               href={project.repo}
               target="_blank"
@@ -93,31 +94,30 @@ function FeaturedCard({ project }: { project: Project }) {
               <GitHubIcon className="size-3.5" />
               Source
             </a>
-            {project.demo ? (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="inline-flex items-center gap-2 rounded-md border border-line bg-elev2 px-3.5 py-2 font-mono text-[13px] text-fg transition-colors hover:border-accent/40 hover:text-accent"
-              >
-                <ExternalLink className="size-3.5" strokeWidth={1.75} />
-                Live demo
-              </a>
-            ) : null}
           </div>
         </div>
 
-        {/* Stack rail — reads like a dependency manifest. */}
-        <div className="border-t border-line bg-elev2/60 p-6 sm:p-8 lg:border-t-0 lg:border-l">
-          <p className="font-mono text-[11px] tracking-wide text-dim uppercase">
-            Stack
-          </p>
-          <div className="mt-4 flex flex-wrap gap-1.5">
-            {project.stack.map((tech) => (
-              <Chip key={tech}>{tech}</Chip>
-            ))}
-          </div>
-        </div>
+        <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-muted">
+          {project.description}
+        </p>
+
+        <ul className="mt-6 grid gap-x-8 gap-y-3 lg:grid-cols-2">
+          {project.highlights.map((h) => (
+            <li key={h} className="flex gap-3 text-sm leading-relaxed text-muted">
+              <span className="mt-2 size-1 shrink-0 rounded-full bg-accent" aria-hidden />
+              <span>{h}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-1.5 border-t border-line bg-elev2/50 px-6 py-4 sm:px-8">
+        <span className="mr-2 font-mono text-[11px] tracking-wide text-dim uppercase">
+          Stack
+        </span>
+        {project.stack.map((tech) => (
+          <Chip key={tech}>{tech}</Chip>
+        ))}
       </div>
     </Card>
   );
@@ -128,9 +128,12 @@ function CompactCard({ project }: { project: Project }) {
     <Card interactive className="flex h-full flex-col p-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h4 className="text-lg font-semibold tracking-tight text-fg">
-            {project.name}
-          </h4>
+          <div className="flex flex-wrap items-center gap-2">
+            <h4 className="text-lg font-semibold tracking-tight text-fg">
+              {project.name}
+            </h4>
+            <span className="font-mono text-[11px] text-dim">{project.domain}</span>
+          </div>
           <p className="mt-1 font-mono text-[13px] text-accent">{project.tagline}</p>
         </div>
         <a
@@ -146,16 +149,24 @@ function CompactCard({ project }: { project: Project }) {
 
       <p className="mt-4 text-sm leading-relaxed text-muted">{project.description}</p>
 
-      <ul className="mt-4 space-y-2">
-        {project.highlights.map((h) => (
-          <li key={h} className="flex gap-2.5 text-[13px] leading-relaxed text-muted">
-            <span className="mt-1.5 size-1 shrink-0 rounded-full bg-accent/70" aria-hidden />
-            <span>{h}</span>
-          </li>
-        ))}
-      </ul>
+      <details className="group mt-4">
+        <summary className="inline-flex items-center gap-1.5 font-mono text-xs text-dim transition-colors hover:text-accent">
+          <ChevronRight className="details-caret size-3.5 transition-transform" strokeWidth={2} />
+          <span className="group-open:hidden">Show details</span>
+          <span className="hidden group-open:inline">Hide details</span>
+        </summary>
+        <ul className="mt-3 space-y-2">
+          {project.highlights.map((h) => (
+            <li key={h} className="flex gap-2.5 text-[13px] leading-relaxed text-muted">
+              <span className="mt-1.5 size-1 shrink-0 rounded-full bg-accent/70" aria-hidden />
+              <span>{h}</span>
+            </li>
+          ))}
+        </ul>
+      </details>
 
-      <div className="mt-6 flex flex-wrap gap-1.5 border-t border-line pt-5">
+      <div className="min-h-6 flex-1" aria-hidden />
+      <div className="flex flex-wrap gap-1.5 border-t border-line pt-5">
         {project.stack.map((tech) => (
           <Chip key={tech}>{tech}</Chip>
         ))}

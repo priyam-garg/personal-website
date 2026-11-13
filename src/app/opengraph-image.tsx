@@ -48,7 +48,7 @@ export default function OpenGraphImage() {
           {[
             "LeetCode Knight · 1904",
             "Xpressbees",
-            "Krishna Tulasi Capital",
+            "AgileDone Tech",
             "LNMIIT '27",
           ].map((tag) => (
             <div

@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://priyamgarg.vercel.app";
 const description =
-  "Priyam Garg — Software Engineer building production AI systems, multi-agent platforms and RAG pipelines. SWE intern at Xpressbees and Krishna Tulasi Capital. LeetCode Knight.";
+  "Priyam Garg — Software Engineer building production AI systems, multi-agent platforms and RAG pipelines. Interned at Xpressbees, AgileDone Tech and Runtime HRMS. LeetCode Knight.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -73,6 +73,7 @@ export const viewport: Viewport = {
  */
 const themeScript = `
 (function () {
+  document.documentElement.classList.add('js');
   try {
     var stored = localStorage.getItem('theme');
     var theme = (stored === 'light' || stored === 'dark')

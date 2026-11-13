@@ -1,11 +1,14 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
 /**
- * Scroll-triggered fade + rise. Fires once, respects prefers-reduced-motion,
- * and renders a plain wrapper when motion is off so nothing can get stuck hidden.
+ * Scroll-triggered fade + rise, done in CSS.
+ *
+ * Content is visible in the server HTML. It is only hidden once the inline
+ * script in layout.tsx has tagged <html> with `js`, so crawlers, link-preview
+ * bots, slow connections and no-JS visitors always see the full page.
+ * Reduced-motion users get no animation (see globals.css).
  */
 export function Reveal({
   children,
@@ -18,19 +21,33 @@ export function Reveal({
   y?: number;
   className?: string;
 }) {
-  const reduced = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
 
-  if (reduced) return <div className={className}>{children}</div>;
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShown(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -60px 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
+    <div
+      ref={ref}
+      className={["reveal", className].filter(Boolean).join(" ")}
+      data-shown={shown ? "" : undefined}
+      style={{ "--reveal-delay": `${delay}s`, "--reveal-y": `${y}px` } as CSSProperties}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

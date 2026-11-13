@@ -21,7 +21,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "relative mx-auto w-full max-w-6xl scroll-mt-24 px-5 py-20 sm:px-8 sm:py-28",
+        "relative mx-auto w-full max-w-6xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-24",
         className,
       )}
     >
@@ -105,7 +105,7 @@ export function Card({
       className={cn(
         "relative rounded-xl border border-line bg-elev",
         interactive &&
-          "transition-colors duration-300 hover:border-line-strong",
+          "lift hover:border-line-strong",
         className,
       )}
       style={{ boxShadow: "var(--shadow)" }}

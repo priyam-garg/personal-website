@@ -10,7 +10,7 @@ export function ExperienceSection() {
         index="02"
         command="git log --author='priyam' --work"
         title="Experience"
-        description="Two software engineering internships, both spent on systems already carrying real traffic — logistics infrastructure at national scale, and a multi-agent AI platform shipped to a live client."
+        description="Three internships on systems already carrying real traffic — logistics infrastructure at national scale, a multi-agent AI platform shipped to a live client, and a full-stack HR onboarding portal."
       />
 
       <ol className="relative space-y-6">

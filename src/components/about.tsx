@@ -16,12 +16,12 @@ const pillars = [
   {
     icon: Code2,
     title: "Shipped, not sandboxed",
-    body: "Two internships spent on systems with real consequences — parcel routing for a national logistics network, and a WhatsApp agent serving a thousand-plus live users.",
+    body: "Three internships spent on systems with real consequences — parcel routing for a national logistics network, a WhatsApp agent serving a thousand-plus live users, and an HR onboarding portal.",
   },
   {
     icon: Trophy,
     title: "Fundamentals underneath",
-    body: "LeetCode Knight in the top 4% and Codeforces Pupil. Data structures, DBMS, operating systems, and low-level design are the layer everything else sits on.",
+    body: "LeetCode Knight in the top 4% and Codeforces Specialist. Data structures, DBMS, operating systems, and low-level design are the layer everything else sits on.",
   },
 ];
 

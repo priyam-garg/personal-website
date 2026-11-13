@@ -157,8 +157,37 @@ body {
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
+/* Scroll reveal. Hidden only when JS is running (html.js, set by the inline
+   script in layout.tsx), so the server HTML is always readable. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 16px));
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+}
+.js .reveal[data-shown] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hover lift for cards. */
+.lift {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s;
+}
+.lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Disclosure caret for <details>. */
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .details-caret { transform: rotate(90deg); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .lift:hover { transform: none; }
   .marquee-track { animation: none; }
   .caret { animation: none; opacity: 1; }
   *, *::before, *::after {

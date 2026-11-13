@@ -1,7 +1,7 @@
 import { skills } from "@/lib/content";
 import type { Fetched, GitHubStats } from "@/lib/stats";
 import { Reveal } from "./reveal";
-import { Card, LiveDot, Section, SectionHeading } from "./ui";
+import { Card, LiveDot, Section, SectionHeading, cn } from "./ui";
 
 export function Skills({ github }: { github: Fetched<GitHubStats> }) {
   // One flattened pass for the ticker; duplicated so the marquee loops seamlessly.
@@ -18,7 +18,16 @@ export function Skills({ github }: { github: Fetched<GitHubStats> }) {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {skills.map((group, i) => (
-          <Reveal key={group.key} delay={i * 0.05}>
+          <Reveal
+            key={group.key}
+            delay={i * 0.05}
+            // A lone card on the last row stretches across it instead of leaving a gap.
+            className={cn(
+              i === skills.length - 1 && skills.length % 2 === 1 && "md:col-span-2",
+              i === skills.length - 1 && skills.length % 3 === 1 && "lg:col-span-3",
+              i === skills.length - 1 && skills.length % 3 !== 1 && "lg:col-span-1",
+            )}
+          >
             <Card interactive className="h-full p-6">
               <div className="flex items-baseline gap-2">
                 <span className="font-mono text-xs text-accent">

@@ -9,9 +9,9 @@ export const profile = {
   role: "Software Engineer",
   tagline: "AI systems, full-stack products, and the algorithms underneath.",
   blurb:
-    "Final-year CSE undergrad at LNMIIT Jaipur. I build production AI systems — multi-agent platforms, RAG pipelines, vector search — and the full-stack products that wrap around them. Two SWE internships shipping real infrastructure, and a LeetCode Knight rating from the years of DSA behind it.",
+    "Final-year CSE undergrad at LNMIIT Jaipur. I build production AI systems — multi-agent platforms, RAG pipelines, vector search — and the full-stack products that wrap around them. Three internships shipping real infrastructure and production AI, and a LeetCode Knight rating from the years of DSA behind it.",
   location: "Jaipur, Rajasthan · India",
-  email: "23ucs682@lnmiit.ac.in",
+  email: "priyamgarg8ii@gmail.com",
   phone: "+91 72968 77630",
   resumePath: "/priyam-garg-resume.pdf",
   availability: "Open to SWE / AI Engineer roles — 2027 grad",
@@ -51,8 +51,8 @@ export const socials: SocialLink[] = [
   },
   {
     label: "Email",
-    href: "mailto:23ucs682@lnmiit.ac.in",
-    handle: "23ucs682@lnmiit.ac.in",
+    href: "mailto:priyamgarg8ii@gmail.com",
+    handle: "priyamgarg8ii@gmail.com",
     icon: "mail",
   },
   {
@@ -95,24 +95,21 @@ export const experience: Experience[] = [
       "Worked on the location intelligence stack behind one of India's largest logistics networks — the systems that decide which hub a parcel routes through and where exactly it gets dropped.",
     highlights: [
       {
-        text: "Built a data migration pipeline to transition core location infrastructure to a new geospatial provider, improving delivery location accuracy across the network.",
+        text: "Built an address cleansing pipeline and a location-data migration pipeline to a new provider, reducing incorrect address matches and improving delivery location accuracy and routing.",
       },
       {
-        text: "Developed an address cleansing pipeline that minimized incorrect address matches and measurably reduced delivery rerouting.",
+        text: "Built a distributed hub-clustering pipeline over large-scale geolocation data to replace manually drawn hub boundaries, fixing zone gaps and overlaps.",
+        metric: "0.5% fewer wrong hubs",
       },
       {
-        text: "Built a hub clustering pipeline to fix gaps and overlaps in delivery zones, reducing wrong hub selection.",
-        metric: "0.5% fewer misroutes",
-      },
-      {
-        text: "Built analytics dashboards visualizing delivery-zone clusters and tracking delivery-agent activity, giving ops teams data to act on instead of intuition.",
+        text: "Developed analytics dashboards visualizing delivery-zone clusters and delivery-agent activity for data-driven workforce decisions.",
       },
     ],
     stack: ["Python", "React.js", "SQL", "Data Analytics", "NLP", "Geospatial"],
   },
   {
-    company: "Krishna Tulasi Capital LLC",
-    role: "Software Engineering Intern",
+    company: "AgileDone Tech",
+    role: "AI Engineering Intern",
     period: "Jan 2026 – May 2026",
     start: "2026-01",
     end: "2026-05",
@@ -130,7 +127,7 @@ export const experience: Experience[] = [
         metric: "1,000+ users",
       },
       {
-        text: "Engineered a production-ready system integrating RAG pipelines, contextual multi-turn conversations, and human escalation paths.",
+        text: "Engineered a production-ready system with RAG pipelines, contextual conversations, and human escalation; deployed as a containerized FastAPI service.",
         metric: "5+ channels",
       },
     ],
@@ -144,6 +141,27 @@ export const experience: Experience[] = [
       "WhatsApp API",
       "Vector DBs",
     ],
+  },
+  {
+    company: "Runtime HRMS",
+    role: "Full Stack Developer Intern",
+    period: "May 2025 – Jul 2025",
+    start: "2025-05",
+    end: "2025-07",
+    location: "Jaipur, India",
+    mode: "On-site",
+    summary:
+      "First internship — built the onboarding flow every new hire goes through on an HR management platform.",
+    highlights: [
+      {
+        text: "Built a responsive employee onboarding portal with progress tracking, dynamic form validation, and step-wise state management.",
+        metric: "11-step flow",
+      },
+      {
+        text: "Implemented secure storage of employee records and documents behind REST APIs.",
+      },
+    ],
+    stack: ["React.js", "Node.js", "Express.js", "REST APIs"],
   },
 ];
 
@@ -174,6 +192,7 @@ export const projects: Project[] = [
       "Nexus unifies the three surfaces project management normally keeps apart — issue tracking, AI assistance, and the code repository — behind a single retrieval-augmented memory spanning tasks, implementation plans, and source code.",
     featured: true,
     repo: "https://github.com/priyam-garg/Project-Manager",
+    demo: "https://nexus-coral-three.vercel.app",
     year: "2026",
     domain: "AI · Full-Stack",
     highlights: [
@@ -340,10 +359,10 @@ export const skills: SkillGroup[] = [
   {
     title: "Languages",
     key: "languages",
-    items: ["C", "C++", "Java", "JavaScript", "TypeScript", "Python", "SQL", "HTML", "CSS"],
+    items: ["C", "C++", "Java", "JavaScript", "TypeScript", "Python", "SQL"],
   },
   {
-    title: "Backend & Data",
+    title: "Backend",
     key: "backend",
     items: [
       "Node.js",
@@ -352,15 +371,20 @@ export const skills: SkillGroup[] = [
       "REST APIs",
       "WebSockets",
       "Webhooks",
-      "MongoDB",
-      "PostgreSQL",
-      "Vector Databases",
+      "NextAuth",
+      "Prisma",
+      "Drizzle ORM",
     ],
   },
   {
     title: "Frontend",
     key: "frontend",
-    items: ["React.js", "Next.js", "TailwindCSS", "ShadCN", "Zod", "NextAuth", "Framer Motion"],
+    items: ["React.js", "Next.js", "HTML", "CSS", "Tailwind CSS", "Zustand", "Zod"],
+  },
+  {
+    title: "Databases",
+    key: "databases",
+    items: ["PostgreSQL", "MySQL", "MongoDB", "Supabase", "Qdrant (Vector DB)"],
   },
   {
     title: "AI / ML",
@@ -370,29 +394,26 @@ export const skills: SkillGroup[] = [
       "LangGraph",
       "RAG",
       "Generative AI",
-      "Vector Search",
+      "AI Agents",
       "Embeddings",
       "Prompt Engineering",
-      "Scikit-learn",
-      "Pandas",
-      "NLP",
     ],
   },
   {
     title: "Tools",
     key: "tools",
-    items: ["Git", "GitHub", "Docker", "Postman", "Supabase", "Figma", "Jira", "AppScript", "Linux"],
+    items: ["Git", "GitHub", "Docker", "Postman", "Linux", "Figma", "Jira"],
   },
   {
     title: "CS Fundamentals",
     key: "fundamentals",
     items: [
       "Data Structures & Algorithms",
-      "OOPs",
+      "OOP",
       "DBMS",
       "Operating Systems",
-      "Low-Level Design",
       "Computer Networks",
+      "Low-Level Design",
     ],
   },
 ];
@@ -412,8 +433,8 @@ export const dsa = {
   codeforces: {
     handle: "priyamgarg8ii",
     url: "https://codeforces.com/profile/priyamgarg8ii",
-    rank: "Pupil",
-    maxRating: 1371,
+    rank: "Specialist",
+    maxRating: 1450,
   },
   practiceRepo: {
     name: "striver-questions",
@@ -452,7 +473,7 @@ export const education: Education[] = [
   {
     institution: "The LNM Institute of Information Technology (LNMIIT)",
     credential: "B.Tech, Computer Science & Engineering",
-    score: "CGPA 7.21 / 10",
+    score: "CGPA 7.30 / 10",
     period: "Aug 2023 – May 2027",
     location: "Jaipur, Rajasthan",
   },
@@ -486,14 +507,19 @@ export const achievements: Achievement[] = [
     kind: "competitive",
   },
   {
-    title: "Codeforces Pupil",
-    detail: "Max rating 1371.",
+    title: "Codeforces Specialist",
+    detail: "Max rating 1450.",
     href: "https://codeforces.com/profile/priyamgarg8ii",
     kind: "competitive",
   },
   {
     title: "Elected Senator",
     detail: "Elected to the LNMIIT student body senate by 600+ voters.",
+    kind: "leadership",
+  },
+  {
+    title: "Head of Sponsorship",
+    detail: "Led sponsorship for Desportivos, the LNMIIT sports fest.",
     kind: "leadership",
   },
 ];

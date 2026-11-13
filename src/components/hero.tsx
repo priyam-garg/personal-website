@@ -34,7 +34,7 @@ export function Hero({
       value: leetcode.totalSolved > 0 ? `${leetcode.totalSolved}+` : "Knight",
       label: leetcode.totalSolved > 0 ? "Problems solved" : "LeetCode badge",
     },
-    { value: "2", label: "SWE internships" },
+    { value: "3", label: "Internships" },
     { value: `${github.publicRepos}`, label: "Public repos" },
   ];
 
@@ -79,10 +79,10 @@ export function Hero({
           </Reveal>
 
           <Reveal delay={0.24}>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 font-mono text-sm font-medium text-accent-fg transition-opacity hover:opacity-90"
+                className="col-span-2 inline-flex items-center justify-center gap-2 rounded-md bg-accent px-4 py-2.5 font-mono text-sm font-medium text-accent-fg transition-opacity hover:opacity-90"
               >
                 View work
                 <ArrowUpRight className="size-4" strokeWidth={2} />
@@ -90,14 +90,14 @@ export function Hero({
               <a
                 href={profile.resumePath}
                 download
-                className="inline-flex items-center gap-2 rounded-md border border-line bg-elev px-4 py-2.5 font-mono text-sm text-muted transition-colors hover:border-line-strong hover:text-fg"
+                className="inline-flex items-center justify-center gap-2 rounded-md border border-line bg-elev px-4 py-2.5 font-mono text-sm text-muted transition-colors hover:border-line-strong hover:text-fg"
               >
                 <Download className="size-4" strokeWidth={1.75} />
                 Résumé
               </a>
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex items-center gap-2 rounded-md border border-line bg-elev px-4 py-2.5 font-mono text-sm text-muted transition-colors hover:border-line-strong hover:text-fg"
+                className="inline-flex items-center justify-center gap-2 rounded-md border border-line bg-elev px-4 py-2.5 font-mono text-sm text-muted transition-colors hover:border-line-strong hover:text-fg"
               >
                 Get in touch
               </a>
@@ -105,7 +105,7 @@ export function Hero({
           </Reveal>
 
           <Reveal delay={0.3}>
-            <div className="mt-8 flex items-center gap-2">
+            <div className="mt-8 flex flex-wrap items-center gap-2">
               {socials
                 .filter((s) => s.icon in socialIcons)
                 .map((social) => {
@@ -132,7 +132,7 @@ export function Hero({
           </Reveal>
         </div>
 
-        <Reveal delay={0.2} y={24}>
+        <Reveal delay={0.2} y={24} className="hidden lg:block">
           <TerminalCard />
         </Reveal>
       </div>

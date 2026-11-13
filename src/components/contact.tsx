@@ -55,7 +55,7 @@ export function Contact() {
               </div>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
-                {socials.map((social) => {
+                {socials.filter((s) => s.icon !== "mail").map((social) => {
                   const Icon = iconMap[social.icon];
                   const external = social.href.startsWith("http");
                   return (
